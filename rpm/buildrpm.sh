@@ -14,6 +14,7 @@ mkdir ~/rpmbuild/SOURCES/prekladysistkova-1
 cp -r www rb systemd nginx ~/rpmbuild/SOURCES/prekladysistkova-1/
 ( cd ~/rpmbuild/SOURCES/; tar cvzf prekladysistkova.tar.gz prekladysistkova-1 )
 rm -r ~/rpmbuild/SOURCES/prekladysistkova-1
+rm ~/rpmbuild/RPMS/noarch/*.rpm
 
 rpmbuild -bb -v ~/rpmbuild/SPECS/prekladysistkova.spec
 
