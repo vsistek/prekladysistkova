@@ -46,6 +46,7 @@ install -d	%{buildroot}/etc/nginx/vhosts.d
 install -m 644	nginx/prekladysistkova.cz.conf %{buildroot}/etc/nginx/vhosts.d/prekladysistkova.cz.conf
 install -d	%{buildroot}/etc/systemd/system
 install -m 644	systemd/prekladysistkova.service %{buildroot}/etc/systemd/system/prekladysistkova.service
+install -m 644 rb/prekladysistkova.conf %{buildroot}/etc/prekladysistkova.conf
 
 %post
 echo Installing rubygems
@@ -77,3 +78,4 @@ echo Reloading nginx.
 /srv/www/prekladysistkova.cz/rb/prekladysistkova.rb
 /etc/nginx/vhosts.d/prekladysistkova.cz.conf
 /etc/systemd/system/prekladysistkova.service
+%config(noreplace) /etc/prekladysistkova.conf

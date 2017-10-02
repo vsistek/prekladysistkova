@@ -1,5 +1,6 @@
 # encoding: UTF-8
 
+require 'yaml'
 require 'rubygems'
 require 'sinatra'
 require 'pony'
@@ -7,6 +8,8 @@ require 'pony'
 set :bind,      "localhost"
 set :port,      1985
 set :protection, :origin_whitelist => ['http://www.prekladysistkova.cz']
+
+$config = YAML.load_file('/etc/prekladysistkova.conf')
 
 get '/' do
   erb :kontakt
@@ -38,8 +41,8 @@ def sendmail(name, contact, body)
               :address => 'smtp.gmail.com',
               :port => '587',
               :enable_starttls_auto => true,
-              :user_name => 'noreply@sistkovi.cz',
-              :password => 'PASSWORD',
+              :user_name => $config["gmail_user"],
+              :password => $config["gmail_pass"],
               :authentication => :plain, # :plain, :login, :cram_md5, no auth by default
               :domain => "localhost.localdomain" # the HELO domain provided by the client to the server
             }
